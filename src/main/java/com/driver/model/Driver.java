@@ -9,8 +9,8 @@ import java.util.List;
 public class Driver
 {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private  int id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private  int driverId;
     private  String mobile;
     private  String password;
     @OneToOne
@@ -20,23 +20,15 @@ public class Driver
      @OneToMany(mappedBy = "driver", cascade = CascadeType.ALL)
     List<TripBooking>tripBookingList=new ArrayList<>();
 
-    public Driver(int id, String mobile, String password, Cab cab, List<TripBooking> tripBookingList) {
-        this.id = id;
-        this.mobile = mobile;
-        this.password = password;
-        this.cab = cab;
-        this.tripBookingList = tripBookingList;
-    }
-
     public Driver() {
     }
 
-    public int getId() {
-        return id;
+    public int getDriverId() {
+        return driverId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setDriverId(int driverId) {
+        this.driverId = driverId;
     }
 
     public String getMobile() {

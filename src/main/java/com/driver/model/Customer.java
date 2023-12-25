@@ -8,30 +8,22 @@ import java.util.List;
 @Table(name = "customber_info")
 public class Customer {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private  int id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private  int customerId;
     private String mobile;
     private  String password;
     @OneToMany(mappedBy = "customber",cascade = CascadeType.ALL)
-    private List<TripBooking>tripBookings=new ArrayList<>();
-
-    public Customer(int id, String mobile, String password, List<TripBooking> tripBookings) {
-        this.id = id;
-        this.mobile = mobile;
-        this.password = password;
-        this.tripBookings = tripBookings;
-
-    }
+    private List<TripBooking>tripBookingList=new ArrayList<>();
 
     public Customer() {
     }
 
-    public int getId() {
-        return id;
+    public int getCustomerId() {
+        return customerId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setCustomerId(int customerId) {
+        this.customerId = customerId;
     }
 
     public String getMobile() {
@@ -50,11 +42,11 @@ public class Customer {
         this.password = password;
     }
 
-    public List<TripBooking> getTripBookings() {
-        return tripBookings;
+    public List<TripBooking> getTripBookingList() {
+        return tripBookingList;
     }
 
-    public void setTripBookings(List<TripBooking> tripBookings) {
-        this.tripBookings = tripBookings;
+    public void setTripBookingList(List<TripBooking> tripBookingList) {
+        this.tripBookingList = tripBookingList;
     }
 }

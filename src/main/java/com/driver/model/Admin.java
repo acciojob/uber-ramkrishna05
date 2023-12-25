@@ -6,26 +6,20 @@ import javax.persistence.*;
 @Table(name = "admin_info")
 public class Admin {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-  private   int id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private   int adminId;
  private    String username;
   private  String password;
-
-    public Admin(int id, String username, String password) {
-        this.id = id;
-        this.username = username;
-        this.password = password;
-    }
 
     public Admin() {
     }
 
-    public int getId() {
-        return id;
+    public int getAdminId() {
+        return adminId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setAdminId(int adminId) {
+        this.adminId = adminId;
     }
 
     public String getUsername() {
