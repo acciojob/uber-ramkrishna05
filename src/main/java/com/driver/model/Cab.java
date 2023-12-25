@@ -1,22 +1,31 @@
 package com.driver.model;
 
 import javax.persistence.*;
+import java.sql.Driver;
+
 
 @Entity
-@Table(name = "cab_info")
-public  class Cab {
+@Table(name = "Cab")
+public class Cab{
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private  int Id;
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private  int perKmRate;
+    int Id;
+
+    int perKmRate;
 
     boolean available;
-    @OneToOne(mappedBy = "cab",cascade = CascadeType.ALL)
-    private Driver driver;
+
+
+    //For mapping
+    @OneToOne
+    @JoinColumn
+    Driver driver;
+
+
 
     public Cab() {
+
     }
 
     public int getId() {
@@ -48,6 +57,8 @@ public  class Cab {
     }
 
     public void setDriver(Driver driver) {
-        this.driver = driver;
+        this.driver= driver;
     }
+
+
 }

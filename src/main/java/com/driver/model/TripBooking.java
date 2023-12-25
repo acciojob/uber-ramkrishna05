@@ -1,30 +1,48 @@
 package com.driver.model;
 
-import com.driver.model.Driver;
-import com.driver.model.TripStatus;
-
 import javax.persistence.*;
 
 @Entity
-@Table(name = "trip_booking_info")
-public  class TripBooking {
+@Table(name = "TripBooking")
+public class TripBooking{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private  int tripBookingId;
-    private  String fromLocation;
-    private  String toLocation;
+    int tripBookingId;
 
-    private  int distanceInKm;
-    private TripStatus status;
-    private  int bill;
+    String fromLocation;
+
+    String toLocation;
+
+    int distanceInKm;
+
+    TripStatus status;
+
+    int bill;
+
+
+    //For mapping to customer(parent)
     @ManyToOne
     @JoinColumn
-    private Driver driver;
-    @OneToMany
+    Customer customer;
+
+    //For mapping to driver(parent)
+    @ManyToOne
     @JoinColumn
-    private Customer customer;
+    Driver driver;
 
     public TripBooking() {
+
+    }
+
+    public TripBooking(int tripBookingId, String fromLocation, String toLocation, int distanceInKm, TripStatus status, int bill, Customer customer, Driver driver) {
+        this.tripBookingId = tripBookingId;
+        this.fromLocation = fromLocation;
+        this.toLocation = toLocation;
+        this.distanceInKm = distanceInKm;
+        this.status = status;
+        this.bill = bill;
+        this.customer = customer;
+        this.driver = driver;
     }
 
     public int getTripBookingId() {
@@ -75,19 +93,19 @@ public  class TripBooking {
         this.bill = bill;
     }
 
-    public Driver getDriver() {
-        return driver;
-    }
-
-    public void setDriver(Driver driver) {
-        this.driver = driver;
-    }
-
     public Customer getCustomer() {
         return customer;
     }
 
     public void setCustomer(Customer customer) {
         this.customer = customer;
+    }
+
+    public Driver getDriver() {
+        return driver;
+    }
+
+    public void setDriver(Driver driver) {
+        this.driver = driver;
     }
 }

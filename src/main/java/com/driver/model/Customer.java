@@ -5,17 +5,28 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "customber_info")
-public class Customer {
+@Table(name = "Customer")
+public class Customer{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private  int customerId;
-    private String mobile;
-    private  String password;
-    @OneToMany(mappedBy = "customber",cascade = CascadeType.ALL)
-    private List<TripBooking>tripBookingList=new ArrayList<>();
+    int customerId;
+
+    String mobile;
+
+    String password;
+
+    //For Mapping
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
+    List<TripBooking> tripBookingList = new ArrayList<>();
 
     public Customer() {
+    }
+
+    public Customer(int customerId, String mobile, String password, List<TripBooking> tripBookingList) {
+        this.customerId = customerId;
+        this.mobile = mobile;
+        this.password = password;
+        this.tripBookingList = tripBookingList;
     }
 
     public int getCustomerId() {
